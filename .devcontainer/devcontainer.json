@@ -2,8 +2,8 @@
   "name": "Ansible + Podman Dev",
   "image": "quay.io/centos/centos:stream8",
   "features": {
-    "ghcr.io/devcontainers/features/ansible:1": {},
-    "ghcr.io/devcontainers/features/podman:1": {}
+    "ansible": {},
+    "podman": {}
   },
   "postCreateCommand": "dnf install -y python3-pip && pip3 install --user podman ansible"
 }

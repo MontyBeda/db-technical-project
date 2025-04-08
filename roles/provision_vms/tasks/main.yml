@@ -1,0 +1,23 @@
+- name: Pull RHEL-compatible image
+  containers.podman.podman_image:
+    name: "{{ image }}"
+
+- name: Run containers with static IP and systemd enabled
+  containers.podman.podman_container:
+    name: "{{ item.name }}"
+    image: "{{ image }}"
+    state: started
+    restart_policy: always
+    network: podman
+    systemd: true
+    volume:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tty: true
+  loop: "{{ containers }}"
+
+- name: Configure container networking (simulate static IPs)
+  ansible.builtin.debug:
+    msg: >
+      Simulating static IP {{ item.ip }} for container {{ item.name }}.
+      (Note: True static IP requires custom CNI, simulated in demo)
+  loop: "{{ containers }}"

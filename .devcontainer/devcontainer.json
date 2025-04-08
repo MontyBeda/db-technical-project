@@ -1,6 +1,8 @@
 {
-  "name": "Ansible + Podman Dev",
-  "image": "quay.io/centos/centos:stream8",
+  "name": "Ansible + Podman",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ansible": {},
     "podman": {}

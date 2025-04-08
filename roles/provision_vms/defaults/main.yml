@@ -1,0 +1,6 @@
+image: quay.io/centos/centos:stream8
+dns_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+gateway: 10.88.0.1
+netmask: 255.255.255.0

@@ -1,0 +1,5 @@
+containers:
+  - name: mysql-container-01
+    ip: 10.88.0.101
+  - name: mysql-container-02
+    ip: 10.88.0.102

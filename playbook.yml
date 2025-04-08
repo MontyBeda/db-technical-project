@@ -1,0 +1,6 @@
+---
+- name: Provision two RHEL 8 containers
+  hosts: localhost
+  become: true
+  roles:
+    - provision_vms

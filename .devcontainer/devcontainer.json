@@ -3,9 +3,4 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "features": {
-    "ansible": {},
-    "podman": {}
-  },
-  "postCreateCommand": "dnf install -y python3-pip && pip3 install --user podman ansible"
 }

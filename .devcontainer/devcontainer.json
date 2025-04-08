@@ -1,0 +1,12 @@
+{
+  "name": "Ansible",
+  "image": "ghcr.io/devcontainers/features/ansible:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/podman:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["redhat.ansible"]
+    }
+  }
+}

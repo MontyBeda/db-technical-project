@@ -1,5 +1,72 @@
-FROM quay.io/centos/centos:stream8
+FROM python:slim
 
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
-    apt install -y python3-pip && \
-    pip3 install podman ansible
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    openssh-client \
+    sshpass \
+    locales \
+    # bat \
+    bash \
+    git \
+    curl \
+    rsync \
+    zsh \
+    nano \
+    sudo \
+    less \
+    # #new
+    # gcc \
+    # python3-dev \
+    # #end-new
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man
+
+ARG USERNAME=ansible
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+ENV HOME=/home/$USERNAME
+RUN groupadd --gid $USER_GID $USERNAME
+RUN useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME
+RUN chmod 0440 /etc/sudoers.d/$USERNAME
+
+RUN pip3 install --no-cache-dir \
+    ansible \
+    # ansible-cmdb \
+    # ansible-runner \
+    # ansible-builder \
+    # ansible-test \
+    ara \
+    hvac \
+    # molecule \
+    dnspython \
+    jmespath \
+    "hvac[parser]" \
+    certifi \
+    ansible-lint \
+    ansible-modules-hashivault
+    # ansible-autodoc
+
+ENV ANSIBLE_GATHERING smart
+ENV ANSIBLE_HOST_KEY_CHECKING false
+ENV ANSIBLE_RETRY_FILES_ENABLED false
+ENV ANSIBLE_FORCE_COLOR true
+ENV GOSS_FMT documentation
+ENV GOSS_COLOR true
+
+# ENV ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)"
+# ENV ARA_API_CLIENT="http"
+# ENV ARA_API_SERVER="http://192.168.1.101:8734"
+
+RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+RUN echo "LANG=en_US.UTF-8" > /etc/locale.conf
+RUN locale-gen en_US.UTF-8
+
+ENV DEBIAN_FRONTEND=dialog
+
+RUN goss validate

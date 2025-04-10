@@ -3,4 +3,4 @@
   hosts: localhost
   become: true
   roles:
-    - provision_vms
+    - provision

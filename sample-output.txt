@@ -1,0 +1,12 @@
+
+PLAY [Provision two RHEL 8 containers] *****************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [provision : Pull RHEL-compatible image] **********************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "Failed to find required executable \"podman\" in paths: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

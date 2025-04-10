@@ -8,3 +8,5 @@ RUN apt-get update; \
 RUN pip3 install --upgrade pip; \
     pip3 install ansible; \
     pip3 install ansible
+
+RUN chmod +x run.sh

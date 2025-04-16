@@ -5,7 +5,7 @@ TASK [Gathering Facts] *********************************************************
 ok: [localhost]
 
 TASK [provision : Pull RHEL-compatible image] **********************************
-fatal: [localhost]: FAILED! => {"changed": false, "msg": "Failed to find required executable \"podman\" in paths: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"}
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "Failed to pull image registry.access.redhat.com/ubi8/ubi-init:latest"}
 
 PLAY RECAP *********************************************************************
 localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   

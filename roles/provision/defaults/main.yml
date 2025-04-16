@@ -1,4 +1,4 @@
-image: quay.io/centos/centos:stream8
+image: registry.access.redhat.com/ubi8/ubi-init
 dns_servers:
   - 1.1.1.1
   - 8.8.8.8
